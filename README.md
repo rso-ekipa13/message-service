@@ -1,16 +1,15 @@
 # message-service
 
-MLS delivery service: stores and orders end-to-end encrypted envelopes, device sync and disappearing messages. .NET 10, ScyllaDB.
+Stores and delivers encrypted messages. The service never sees the content: it keeps MLS ciphertexts in ScyllaDB, orders group changes by epoch, lets a device catch up after being offline, and deletes messages when a disappearing timer runs out.
 
-Part of an end-to-end encrypted messenger built for *Računalniške storitve v oblaku* (UL FRI, 2026/27) by project group 13.
+Every stored message is announced as an event on NATS, which is how the realtime and notification services find out about it.
 
-| | |
-|---|---|
-| Owner | Amar Mehić |
-| Stack | .NET 10, ScyllaDB, NATS JetStream |
-| Status | Planned; scaffolding starts in week 1 (27. 10.–8. 11. 2026) |
-| Architecture and plan | <https://github.com/rso-ekipa13/docs> |
+Built with .NET 10 and ScyllaDB.
 
-## Branches
+Owner: Amar Mehić. Status: planned.
 
-`main` is protected (pull requests only) and deployable; `dev` is the integration branch.
+## Where this fits
+
+This is one of the repositories of [Pretty Good Pigeon](https://github.com/rso-ekipa13), an end-to-end encrypted messenger built by ekipa 13 for the Cloud Computing course at UL FRI (2026/27). The architecture, plan and decisions live in [docs](https://github.com/rso-ekipa13/docs).
+
+`main` only changes through pull requests; day-to-day work goes to `dev`.
